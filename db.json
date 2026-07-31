@@ -1,0 +1,272 @@
+{
+"MOLIT_MAP_INFO": [
+	{
+		"BUILD_ID" : 11194,
+		"CHK_COMPANY_NM" : "(주)종합건축사사무소 길",
+		"BJD_CD" : "10100",
+		"BJD_BUN" : "837",
+		"BJD_JI" : "26",
+		"NA_BJD_CD" : "10100",
+		"NEW_ROAD_CD" : "116804166219",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "14",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "삼일프라자오피스텔",
+		"STATE_CD" : "1",
+		"STATE_NM" : "작성",
+		"REQ_SIZE_CD" : "10",
+		"REQ_SIZE_NM" : "3천㎡미만",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	},
+	{
+		"BUILD_ID" : 11196,
+		"CHK_COMPANY_NM" : "고을건축사사무소",
+		"BJD_CD" : "",
+		"BJD_BUN" : "",
+		"BJD_JI" : "",
+		"NA_BJD_CD" : "11100",
+		"NEW_ROAD_CD" : "117104169199",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "30",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "",
+		"STATE_CD" : "4",
+		"STATE_NM" : "결재완료",
+		"REQ_SIZE_CD" : "10,20",
+		"REQ_SIZE_NM" : "3천㎡미만,3천㎡이상 1만㎡미만",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	},
+	{
+		"BUILD_ID" : 11212,
+		"CHK_COMPANY_NM" : "(주)선인터라인 건축사사무소",
+		"BJD_CD" : "",
+		"BJD_BUN" : "",
+		"BJD_JI" : "",
+		"NA_BJD_CD" : "10800",
+		"NEW_ROAD_CD" : "116503121024",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "49",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "",
+		"STATE_CD" : "5",
+		"STATE_NM" : "",
+		"REQ_SIZE_CD" : "10,20",
+		"REQ_SIZE_NM" : "3천㎡미만,3천㎡이상 1만㎡미만",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	},
+	{
+		"BUILD_ID" : 11700,
+		"CHK_COMPANY_NM" : "와이엔건축사사무소",
+		"BJD_CD" : "",
+		"BJD_BUN" : "",
+		"BJD_JI" : "",
+		"NA_BJD_CD" : "10500",
+		"NEW_ROAD_CD" : "115002005007",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "212",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "",
+		"STATE_CD" : "5",
+		"STATE_NM" : "",
+		"REQ_SIZE_CD" : "10",
+		"REQ_SIZE_NM" : "3천㎡미만",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	},
+	{
+		"BUILD_ID" : 11702,
+		"CHK_COMPANY_NM" : "(주)대한건축 종합건축사사무소",
+		"BJD_CD" : "",
+		"BJD_BUN" : "",
+		"BJD_JI" : "",
+		"NA_BJD_CD" : "",
+		"NEW_ROAD_CD" : "115604154461",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "10",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "",
+		"STATE_CD" : "1",
+		"STATE_NM" : "작성",
+		"REQ_SIZE_CD" : "10",
+		"REQ_SIZE_NM" : "3천㎡미만",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	},
+	{
+		"BUILD_ID" : 11704,
+		"CHK_COMPANY_NM" : "청해엔지니어링종합건축사사무소",
+		"BJD_CD" : "",
+		"BJD_BUN" : "",
+		"BJD_JI" : "",
+		"NA_BJD_CD" : "",
+		"NEW_ROAD_CD" : "117103123014",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "148",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "",
+		"STATE_CD" : "1",
+		"STATE_NM" : "작성",
+		"REQ_SIZE_CD" : "10,20,30",
+		"REQ_SIZE_NM" : "3천㎡미만,3천㎡이상 1만㎡미만,1만㎡이상",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	},
+	{
+		"BUILD_ID" : 11706,
+		"CHK_COMPANY_NM" : "(주)씨드피아건축사사무소",
+		"BJD_CD" : "",
+		"BJD_BUN" : "",
+		"BJD_JI" : "",
+		"NA_BJD_CD" : "",
+		"NEW_ROAD_CD" : "116504163645",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "57",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "",
+		"STATE_CD" : "4",
+		"STATE_NM" : "결재완료",
+		"REQ_SIZE_CD" : "10,20,30",
+		"REQ_SIZE_NM" : "3천㎡미만,3천㎡이상 1만㎡미만,1만㎡이상",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	},
+	{
+		"BUILD_ID" : 11708,
+		"CHK_COMPANY_NM" : "(주)동림종합건축사사무소",
+		"BJD_CD" : "",
+		"BJD_BUN" : "",
+		"BJD_JI" : "",
+		"NA_BJD_CD" : "10200",
+		"NEW_ROAD_CD" : "116503121006",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "16",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "",
+		"STATE_CD" : "5",
+		"STATE_NM" : "",
+		"REQ_SIZE_CD" : "10",
+		"REQ_SIZE_NM" : "3천㎡미만",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	},
+	{
+		"BUILD_ID" : 11710,
+		"CHK_COMPANY_NM" : "상하건축사사무소",
+		"BJD_CD" : "11300",
+		"BJD_BUN" : "80",
+		"BJD_JI" : "19",
+		"NA_BJD_CD" : "11300",
+		"NEW_ROAD_CD" : "111704106249",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "8",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "",
+		"STATE_CD" : "1",
+		"STATE_NM" : "작성",
+		"REQ_SIZE_CD" : "10,20",
+		"REQ_SIZE_NM" : "3천㎡미만,3천㎡이상 1만㎡미만",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	},
+	{
+		"BUILD_ID" : 11712,
+		"CHK_COMPANY_NM" : "(주)토탈이엔지건축사사무소",
+		"BJD_CD" : "",
+		"BJD_BUN" : "",
+		"BJD_JI" : "",
+		"NA_BJD_CD" : "",
+		"NEW_ROAD_CD" : "115003115008",
+		"NA_UGRND_CD" : "0",
+		"NA_BUN" : "583",
+		"NA_SUB_BUN" : "0",
+		"BUILD_NM" : "",
+		"STATE_CD" : "1",
+		"STATE_NM" : "작성",
+		"REQ_SIZE_CD" : "10,20,30",
+		"REQ_SIZE_NM" : "3천㎡미만,3천㎡이상 1만㎡미만,1만㎡이상",
+		"SAFE_CHK_YN" : "N",
+		"CHK_YN" : "Y",
+		"CHK_COM_CD" : "1",
+		"LAT" : 0,
+		"LNG" : 0
+	}
+],
+
+"MOLIT_HISTORY": [
+	{
+		"MOL_HIS_ID" : 11194,
+		"CHK_DATE" : "20251120"
+	},
+	{
+		"MOL_HIS_ID" : 11196,
+		"CHK_DATE" : "20240807"
+	},
+	{
+		"MOL_HIS_ID" : 11212,
+		"CHK_DATE" : "20241118"
+	},
+	{
+		"MOL_HIS_ID" : 11700,
+		"CHK_DATE" : "20241118"
+	},
+	{
+		"MOL_HIS_ID" : 11702,
+		"CHK_DATE" : "20250620"
+	},
+	{
+		"MOL_HIS_ID" : 11704,
+		"CHK_DATE" : "20260313"
+	},
+	{
+		"MOL_HIS_ID" : 11706,
+		"CHK_DATE" : "20211230"
+	},
+	{
+		"MOL_HIS_ID" : 11708,
+		"CHK_DATE" : "20241118"
+	},
+	{
+		"MOL_HIS_ID" : 11710,
+		"CHK_DATE" : "20250619"
+	},
+	{
+		"MOL_HIS_ID" : 11712,
+		"CHK_DATE" : "20240822"
+	}
+]
+
+}
+
+
+
+
