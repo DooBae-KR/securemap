@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     try {
 
         const [rows] = await db.query(
-            "SELECT * FROM building ORDER BY id"
+            "SELECT LAT, LNG, ADDRESS, BUILD_NM, BUILD_ID FROM MOLIT_MAP_INFO ORDER BY BUILD_ID"
         );
 
         res.json(rows);
