@@ -1,28 +1,9 @@
 const express = require("express");
 const router = express.Router();
 
-const db = require("../db");
+const buildingController = require("../controllers/buildingController");
 
-// 건물 목록 조회
-router.get("/", async (req, res) => {
-
-    try {
-
-        const [rows] = await db.query(
-            "SELECT LAT, LNG, ADDRESS, BUILD_NM, BUILD_ID FROM MOLIT_MAP_INFO ORDER BY BUILD_ID"
-        );
-
-        res.json(rows);
-
-    } catch (err) {
-
-        console.error(err);
-        res.status(500).json({
-            message: "DB Error"
-        });
-
-    }
-
-});
+// GET /api/buildings
+router.get("/", buildingController.getBuildings);
 
 module.exports = router;
