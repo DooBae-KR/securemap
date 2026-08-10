@@ -1,229 +1,678 @@
 :root {
-  font-family: Arial, sans-serif;
-  color: #222;
-  background: #fff;
+  font-family:
+    Pretendard,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+
+  color: #202833;
+  background: #f6f8fb;
   font-synthesis: none;
 }
 
+/* 모든 요소의 크기 계산을 border-box 기준으로 통일 */
 * {
   box-sizing: border-box;
 }
 
-body {
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
   margin: 0;
-  min-width: 320px;
 }
 
-button {
+body {
+  min-width: 1180px;
+  overflow: hidden;
+}
+
+button,
+input {
   font: inherit;
 }
 
-.app-shell {
-  min-height: 100vh;
-}
-
-.topbar {
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 24px;
-}
-
-.eyebrow,
-.section-label {
-  color: #666;
-  font-size: 12px;
-  margin: 0 0 5px;
-}
-
-h1,
-h2,
-p {
-  margin-top: 0;
-}
-
-h1 {
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.result-count {
-  color: #666;
-  font-size: 13px;
-  margin: 0;
-}
-
-.workspace {
-  display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
-  min-height: calc(100vh - 73px);
-}
-
-.building-panel {
-  border-right: 1px solid #ddd;
-  min-width: 0;
-}
-
-.panel-heading {
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  padding: 18px 20px;
-}
-
-h2 {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0;
-}
-
-.count-badge {
-  color: #666;
-  font-size: 13px;
-}
-
-.building-list {
-  max-height: calc(100vh - 145px);
-  overflow-y: auto;
-}
-
-.building-item {
-  align-items: center;
-  background: #fff;
-  border: 0;
-  border-bottom: 1px solid #eee;
-  color: #222;
+button {
   cursor: pointer;
-  display: grid;
-  gap: 10px;
-  grid-template-columns: 25px 1fr 16px;
-  padding: 14px 20px;
-  text-align: left;
+}
+
+/* 전체 애플리케이션 영역 */
+.app-shell {
   width: 100%;
+  height: 100vh;
+  background: #ffffff;
 }
 
-.building-item:hover,
-.building-item.selected {
-  background: #f2f2f2;
+/* =========================================================
+   상단 네비게이션
+   ========================================================= */
+.top-navigation {
+  height: 72px;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 28px;
+  border-bottom: 1px solid #dce2e9;
+  background: #ffffff;
 }
 
-.item-number,
-.item-arrow {
-  color: #888;
-  font-size: 12px;
+.brand {
+  height: 72px;
+  min-width: 260px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 1px;
 }
 
-.item-content {
-  display: grid;
-  gap: 4px;
-  min-width: 0;
+.brand strong {
+  font-size: 17px;
+  font-weight: 700;
 }
 
-.item-content strong {
-  font-size: 14px;
+.brand-icon {
+  font-size: 22px;
+  color: #111827;
+}
+
+.navigation-menu {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.nav-button {
+  position: relative;
+  height: 100%;
+  padding: 0 18px;
+  border: 0;
+  background: transparent;
+  color: #4f5965;
+  font-size: 15px;
   font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
 }
 
-.item-content small {
-  color: #777;
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.nav-button.active {
+  color: #163e67;
 }
 
-.state-message {
-  color: #666;
+/* 현재 선택된 메뉴 하단선 */
+.nav-button.active::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 0;
+  height: 3px;
+  background: #173f68;
+}
+
+/* =========================================================
+   전체 화면 구조
+   왼쪽 290px 사이드바 + 오른쪽 지도
+   ========================================================= */
+.workspace {
+  height: calc(100vh - 72px);
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+}
+
+/* =========================================================
+   왼쪽 사이드바
+   ========================================================= */
+.sidebar {
+  height: 100%;
+  overflow-y: auto;
+  border-right: 1px solid #dbe2ea;
+  background: #ffffff;
+}
+
+.sidebar-section {
+  padding: 18px 18px;
+  border-bottom: 1px solid #e6ebf0;
+}
+
+.sidebar h2,
+.sidebar h3 {
+  margin: 0;
+}
+
+.sidebar h2 {
+  font-size: 16px;
+}
+
+.sidebar h3 {
   font-size: 14px;
-  padding: 20px;
+  font-weight: 700;
 }
 
-.error-message {
-  color: #b3261e;
+.section-description {
+  margin: 10px 0 18px;
+  color: #6a7480;
+  font-size: 11px;
+  line-height: 1.55;
 }
 
-.map-panel {
-  min-width: 0;
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #4a5561;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   검색 영역
+   ========================================================= */
+.search-box {
   position: relative;
 }
 
-.map {
-  background: #eee;
-  height: 100%;
-  min-height: 500px;
+.search-box input {
   width: 100%;
-}
-
-.map-unavailable {
-  align-items: center;
-  color: #666;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  text-align: center;
-}
-
-.map-caption {
-  background: #fff;
-  border: 1px solid #ddd;
-  bottom: 12px;
-  color: #666;
+  height: 38px;
+  padding: 0 38px 0 12px;
+  border: 1px solid #d3dce5;
+  border-radius: 4px;
+  outline: none;
+  color: #1f2933;
   font-size: 12px;
-  left: 12px;
-  padding: 7px 10px;
+}
+
+.search-box input:focus {
+  border-color: #356b9e;
+}
+
+.search-icon {
   position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #52606d;
+  font-size: 19px;
 }
 
-.live-dot {
-  display: none;
+.reset-button {
+  display: block;
+  margin: 8px 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: #356b9e;
+  font-size: 11px;
 }
 
-.building-info-window {
-  display: grid;
-  gap: 5px;
-  min-width: 180px;
-  padding: 10px 12px;
+/* =========================================================
+   검색 결과
+   ========================================================= */
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
 }
 
-.building-info-window strong {
-  font-size: 14px;
-  font-weight: 600;
+.section-title-row span {
+  color: #7b8794;
+  font-size: 11px;
 }
 
-.building-info-window span {
-  color: #666;
-  font-size: 12px;
+.result-section {
+  padding-right: 8px;
+}
+
+.building-list {
+  max-height: 310px;
+  padding-right: 8px;
+  overflow-y: auto;
+}
+
+/* 건물 한 개 카드 */
+.building-card {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #e0e5eb;
+  border-radius: 5px;
+  background: #ffffff;
+}
+
+.building-card:hover {
+  background: #f8fafc;
+}
+
+/* 현재 선택된 건물 */
+.building-card.selected {
+  border-color: #2e658f;
+  background: #f4f9fd;
+}
+
+.building-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.building-card strong {
+  min-width: 0;
+  color: #27313a;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.building-card p {
+  margin: 8px 0 3px;
+  color: #717c87;
+  font-size: 10px;
   line-height: 1.4;
 }
 
-@media (max-width: 760px) {
-  .topbar {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
-  }
+.building-card small {
+  color: #89939d;
+  font-size: 10px;
+}
 
-  .workspace {
-    grid-template-columns: 1fr;
-  }
+/* =========================================================
+   검사기한 상태 배지
+   현재 App.tsx에서 가상 상태값을 사용 중
+   normal / warning / expired / unknown
+   ========================================================= */
+.status-badge {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 700;
+}
 
-  .building-panel {
-    border-bottom: 1px solid #ddd;
-    border-right: 0;
-  }
+.status-dot,
+.filter-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
 
-  .building-list {
-    max-height: 320px;
-  }
+/* 정상 */
+.status-badge.normal {
+  color: #238359;
+  background: #e8f7ef;
+}
 
-  .map,
-  .map-panel {
-    min-height: 420px;
+/* 기한 임박 */
+.status-badge.warning {
+  color: #9a6400;
+  background: #fff4db;
+}
+
+/* 기한 초과 */
+.status-badge.expired {
+  color: #c23a38;
+  background: #fdebea;
+}
+
+/* 기준 미산정 */
+.status-badge.unknown {
+  color: #616c79;
+  background: #edf0f3;
+}
+
+.status-badge.normal .status-dot,
+.filter-dot.normal {
+  background: #1da36c;
+}
+
+.status-badge.warning .status-dot,
+.filter-dot.warning {
+  background: #e69814;
+}
+
+.status-badge.expired .status-dot,
+.filter-dot.expired {
+  background: #dc4742;
+}
+
+.status-badge.unknown .status-dot,
+.filter-dot.unknown {
+  background: #7b8490;
+}
+
+/* =========================================================
+   로딩 / 에러 메시지
+   ========================================================= */
+.state-message {
+  padding: 15px 0;
+  color: #6d7782;
+  font-size: 12px;
+}
+
+.error-message {
+  color: #ba2f2c;
+}
+
+/* =========================================================
+   표시 설정 / 필터
+   ========================================================= */
+.settings-section,
+.filter-section {
+  display: grid;
+  gap: 14px;
+}
+
+.switch-row,
+.filter-row {
+  display: flex;
+  align-items: center;
+  color: #46515d;
+  font-size: 12px;
+}
+
+.switch-row {
+  justify-content: space-between;
+}
+
+.switch-row input {
+  width: 34px;
+  height: 18px;
+  accent-color: #2186ef;
+}
+
+.filter-row {
+  gap: 8px;
+}
+
+.filter-row input {
+  accent-color: #2186ef;
+}
+
+/* =========================================================
+   지도 영역
+   ========================================================= */
+.map-area {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  background: #eef1f4;
+}
+
+.map-unavailable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  color: #66717c;
+}
+
+/* =========================================================
+   건물 상세 모달
+   ========================================================= */
+.building-detail-panel {
+  position: absolute;
+
+  /*
+   * 기존에는 아래처럼 위치가 고정되어 있었음.
+   *
+   * top: 18px;
+   * left: 28px;
+   *
+   * 현재는 App.tsx의 modalPosition 값으로
+   * top / left를 동적으로 지정하기 때문에 삭제함.
+   */
+
+  width: 310px;
+  overflow: hidden;
+  border: 1px solid #d7dfe7;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 0 8px 26px rgba(40, 50, 60, 0.17);
+
+  /*
+   * 네이버 지도 및 지도 객체보다
+   * 상세 모달을 위쪽에 표시
+   */
+  z-index: 100;
+}
+
+/* =========================================================
+   상세 모달 헤더
+
+   파란색 헤더를 잡으면 드래그 가능.
+   실제 이동 로직은 App.tsx의
+   handleModalMouseDown()에서 처리함.
+   ========================================================= */
+.detail-header {
+  min-height: 68px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 13px 14px;
+  color: #ffffff;
+  background: #183f67;
+
+  /* 마우스를 올렸을 때 이동 가능한 영역이라는 표시 */
+  cursor: move;
+
+  /* 드래그할 때 제목 텍스트가 선택되는 현상 방지 */
+  user-select: none;
+}
+
+.detail-header strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.detail-header p {
+  margin: 0;
+  color: #d7e3ee;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+/* 상세 모달 닫기 X 버튼 */
+.detail-header button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.13);
+  color: #ffffff;
+  font-size: 19px;
+
+  /*
+   * 부모인 detail-header에는 cursor: move가 있으므로
+   * 버튼 위에서는 일반 클릭 커서로 변경.
+   */
+  cursor: pointer;
+}
+
+/* =========================================================
+   상세정보 각 행
+   ========================================================= */
+.detail-row {
+  min-height: 44px;
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  align-items: center;
+  padding: 0 14px;
+  border-bottom: 1px solid #ebeff3;
+  font-size: 11px;
+}
+
+/* 왼쪽 항목명 */
+.detail-row > span:first-child {
+  color: #66717c;
+}
+
+/* 오른쪽 실제 값 */
+.detail-row strong {
+  color: #3d4852;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* =========================================================
+   최근 변경이력
+
+   현재 App.tsx에서는 날짜 및 변경내용이
+   가상 데이터로 표시되고 있음.
+   추후 MOLIT_HISTORY.CHK_DATE 연동 예정.
+   ========================================================= */
+.recent-history {
+  margin: 10px;
+  padding: 11px;
+  border: 1px solid #e3e8ed;
+  background: #f9fafb;
+}
+
+.recent-history strong {
+  font-size: 11px;
+}
+
+.recent-history p {
+  margin: 5px 0 0;
+  color: #77818b;
+  font-size: 9px;
+}
+
+/* =========================================================
+   상세 모달 하단 버튼
+   ========================================================= */
+.detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+  padding: 3px 10px 12px;
+}
+
+.secondary-button,
+.primary-button {
+  height: 30px;
+  padding: 0 11px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.secondary-button {
+  border: 1px solid #d5dce3;
+  background: #ffffff;
+  color: #4f5c68;
+}
+
+.primary-button {
+  border: 1px solid #193f66;
+  background: #193f66;
+  color: #ffffff;
+}
+
+/* =========================================================
+   지도 오른쪽 아래 검사기한 상태 범례
+
+   현재 검사기한 상태 자체가 가상 데이터이므로
+   이 범례도 테스트 UI용.
+   ========================================================= */
+.legend-box {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  width: 150px;
+  padding: 12px;
+  border: 1px solid #d6dee6;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 3px 14px rgba(40, 50, 60, 0.11);
+
+  /* 지도 위에 표시 */
+  z-index: 20;
+}
+
+.legend-box strong {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 11px;
+}
+
+.legend-box div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+  color: #555f68;
+  font-size: 9px;
+}
+
+/* =========================================================
+   네이버 지도 마커 클릭 시 나오는 InfoWindow
+   ========================================================= */
+.building-info-window {
+  min-width: 200px;
+  display: grid;
+  gap: 7px;
+  padding: 12px 14px;
+}
+
+.building-info-window strong {
+  color: #26313b;
+  font-size: 13px;
+}
+
+.building-info-window span {
+  color: #6e7984;
+  font-size: 10px;
+}
+
+/* InfoWindow 내부 상태 배지 */
+.popup-status {
+  width: fit-content;
+  padding: 4px 7px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.popup-normal {
+  color: #238359 !important;
+  background: #e8f7ef;
+}
+
+.popup-warning {
+  color: #9a6400 !important;
+  background: #fff4db;
+}
+
+.popup-expired {
+  color: #c23a38 !important;
+  background: #fdebea;
+}
+
+.popup-unknown {
+  color: #616c79 !important;
+  background: #edf0f3;
+}
+
+/* =========================================================
+   반응형
+
+   현재 화면 자체가 최소 1180px 기준으로 설계되어 있어
+   1180px보다 작으면 페이지 스크롤 허용.
+   ========================================================= */
+@media (max-width: 1180px) {
+  body {
+    overflow: auto;
   }
 }
