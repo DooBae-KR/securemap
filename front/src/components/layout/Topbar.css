@@ -14,7 +14,6 @@
 
 .app-topbar__brand {
     display: flex;
-    min-width: 390px;
     align-items: center;
     gap: 12px;
     color: inherit;
@@ -62,6 +61,7 @@
     height: 100%;
     align-items: stretch;
     gap: 4px;
+    margin-left: 70px;
 }
 
 .app-topbar__navigation-link {

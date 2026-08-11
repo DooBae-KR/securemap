@@ -1,78 +1,133 @@
+/* 01. 페이지 공통 변수 및 레이아웃 */
 .statistics-page {
-    --statistics-primary: #173a5e;
-    --statistics-primary-dark: #102f4d;
-    --statistics-text: #1a1a1c;
-    --statistics-muted: #667085;
-    --statistics-line: #e4e7ec;
+    --statistics-page-bg: #f4f7fa;
     --statistics-surface: #ffffff;
-    --statistics-page: #eef2f6;
+    --statistics-surface-subtle: #f7f9fb;
+    --statistics-primary: #17466f;
+    --statistics-primary-hover: #103a5e;
+    --statistics-primary-soft: #eaf2f8;
+    --statistics-text: #1d2a38;
+    --statistics-text-secondary: #405365;
+    --statistics-muted: #66778a;
+    --statistics-line: #d9e2ea;
+    --statistics-line-strong: #c7d3de;
+    --statistics-success: #20835a;
+    --statistics-warning: #b96618;
+    --statistics-danger: #b42318;
+    --statistics-radius: 9px;
+    --statistics-inner-radius: 7px;
+    --statistics-shadow: 0 1px 2px rgb(18 45 68 / 4%);
+    --statistics-container: 1320px;
+    --statistics-section-gap: 22px;
+    --statistics-section-padding: 20px;
+    --statistics-focus-ring: 0 0 0 3px rgb(23 70 111 / 16%);
 
     min-height: calc(100vh - var(--app-topbar-height, 70px));
-    padding: 26px 28px 40px;
+    padding: 28px 28px 42px;
     color: var(--statistics-text);
-    background: var(--statistics-page);
+    background: var(--statistics-page-bg);
 }
 
 .statistics-page__inner {
-    width: 100%;
+    display: flex;
+    width: min(100%, var(--statistics-container));
     margin: 0 auto;
+    flex-direction: column;
+    gap: var(--statistics-section-gap);
 }
 
 .statistics-page__heading {
-    margin-bottom: 18px;
+    min-width: 0;
+    padding-left: 2px;
 }
 
 .statistics-page__heading h1 {
     margin: 0;
-    color: #1a1a1c;
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 20px;
-    letter-spacing: -0.3px;
+    color: var(--statistics-text);
+    font-size: 25px;
+    font-weight: 750;
+    line-height: 1.3;
+    letter-spacing: -0.045em;
 }
 
 .statistics-page__heading p {
+    max-width: 720px;
     margin: 7px 0 0;
     color: var(--statistics-muted);
     font-size: 13px;
-    line-height: 20px;
+    line-height: 1.65;
 }
 
-/* 검색 패널 */
-.statistics-search {
+/* 02. 네 개 상위 섹션 공통 카드 스타일 */
+.statistics-search,
+.statistics-diagnosis-panel,
+.statistics-agency-panel,
+.statistics-registration-panel {
+    min-width: 0;
     overflow: hidden;
     border: 1px solid var(--statistics-line);
-    border-radius: 8px;
+    border-radius: var(--statistics-radius);
+    background: var(--statistics-surface);
+    box-shadow: var(--statistics-shadow);
+}
+
+/* 03. 네 개 상위 섹션 공통 제목·본문 스타일 */
+.statistics-search__heading,
+.statistics-diagnosis-panel__heading,
+.statistics-agency-panel__heading,
+.statistics-registration-panel__heading {
+    display: flex;
+    min-height: 47px;
+    align-items: center;
+    padding: 0 var(--statistics-section-padding);
+    border-bottom: 1px solid var(--statistics-line);
     background: var(--statistics-surface);
 }
 
-.statistics-search__heading {
-    display: flex;
-    height: 48px;
+.statistics-search__heading h2,
+.statistics-diagnosis-panel__heading h2,
+.statistics-agency-panel__heading h2,
+.statistics-registration-panel__heading h2 {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 0 18px;
-    border-bottom: 1px solid var(--statistics-line);
-}
-
-.statistics-search__heading h2 {
+    gap: 10px;
     margin: 0;
-    color: #1a1a1c;
+    color: var(--statistics-text);
     font-size: 14px;
     font-weight: 700;
-    line-height: 20px;
+    letter-spacing: -0.02em;
 }
 
+.statistics-search__heading h2::before,
+.statistics-diagnosis-panel__heading h2::before,
+.statistics-agency-panel__heading h2::before,
+.statistics-registration-panel__heading h2::before {
+    width: 3px;
+    height: 15px;
+    flex: 0 0 3px;
+    border-radius: 2px;
+    background: var(--statistics-primary);
+    content: "";
+}
+
+.statistics-search__form,
+.statistics-diagnosis-panel__body,
+.statistics-agency-panel__body,
+.statistics-registration-panel__body {
+    padding: var(--statistics-section-padding);
+}
+
+/* 04. 조건 검색 영역 */
 .statistics-search__form {
-    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .statistics-search__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    align-items: start;
-    column-gap: 16px;
-    row-gap: 14px;
+    gap: 16px 14px;
 }
 
 .statistics-field {
@@ -83,79 +138,91 @@
 }
 
 .statistics-field label {
-    color: var(--statistics-muted);
+    color: #526579;
     font-size: 12px;
-    font-weight: 600;
-    line-height: 12px;
+    font-weight: 650;
+    line-height: 1.35;
 }
 
 .statistics-field input,
 .statistics-field select {
     width: 100%;
     height: 40px;
-    padding: 0 17px;
-    border: 1px solid #ced4da;
-    border-radius: 5px;
-    outline: none;
-    color: #343a40;
-    background: #ffffff;
+    border: 1px solid var(--statistics-line-strong);
+    border-radius: var(--statistics-inner-radius);
+    outline: 0;
+    color: var(--statistics-text);
+    background-color: var(--statistics-surface);
     font: inherit;
-    font-size: 16px;
-    font-weight: 300;
-    transition: border-color 0.15s ease,
-    box-shadow 0.15s ease;
+    font-size: 13px;
+    line-height: 1;
+    transition:
+            border-color 0.15s ease,
+            box-shadow 0.15s ease,
+            background-color 0.15s ease;
+}
+
+.statistics-field input {
+    padding: 0 13px;
 }
 
 .statistics-field input::placeholder {
-    color: #6c757d;
-    opacity: 1;
+    color: #96a4b2;
+}
+
+.statistics-field select {
+    padding: 0 40px 0 13px;
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%2366778a' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m5 7 5 5 5-5'/%3E%3C/svg%3E");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 17px;
 }
 
 .statistics-field input:hover,
 .statistics-field select:hover {
-    border-color: #aeb8c2;
+    border-color: #aab9c6;
 }
 
-.statistics-field input:focus,
-.statistics-field select:focus {
+.statistics-field input:focus-visible,
+.statistics-field select:focus-visible {
     border-color: var(--statistics-primary);
-    box-shadow: 0 0 0 2px rgb(23 58 94 / 12%);
-}
-
-.statistics-field select {
-    cursor: pointer;
-    padding-right: 13px;
+    box-shadow: var(--statistics-focus-ring);
 }
 
 .statistics-search__actions {
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-    margin-top: 16px;
 }
 
 .statistics-button {
+    min-width: 72px;
     height: 40px;
-    padding: 0 14px;
-    border: 1px solid #d3d8e0;
-    border-radius: 6px;
+    padding: 0 16px;
+    border: 1px solid transparent;
+    border-radius: var(--statistics-inner-radius);
     cursor: pointer;
     font: inherit;
-    font-size: 16px;
-    font-weight: 700;
-    line-height: 20px;
-    transition: border-color 0.15s ease,
-    background-color 0.15s ease;
+    font-size: 13px;
+    font-weight: 650;
+    transition:
+            border-color 0.15s ease,
+            color 0.15s ease,
+            background-color 0.15s ease,
+            transform 0.15s ease;
 }
 
 .statistics-button--secondary {
-    color: #4b5565;
-    background: #ffffff;
+    border-color: var(--statistics-line-strong);
+    color: var(--statistics-text-secondary);
+    background: var(--statistics-surface);
 }
 
 .statistics-button--secondary:hover {
-    border-color: #b9c0ca;
-    background: #f8fafc;
+    border-color: #a9b9c6;
+    background: var(--statistics-surface-subtle);
 }
 
 .statistics-button--primary {
@@ -165,98 +232,90 @@
 }
 
 .statistics-button--primary:hover {
-    border-color: var(--statistics-primary-dark);
-    background: var(--statistics-primary-dark);
+    border-color: var(--statistics-primary-hover);
+    background: var(--statistics-primary-hover);
 }
 
-.statistics-button:focus-visible {
-    outline: 3px solid rgb(23 58 94 / 20%);
+.statistics-button:active {
+    transform: translateY(1px);
+}
+
+.statistics-button:focus-visible,
+.statistics-registration-table__actions button:focus-visible,
+.statistics-pagination button:focus-visible {
+    outline: 3px solid rgb(23 70 111 / 22%);
     outline-offset: 2px;
 }
 
-/* 조회 결과 요약 바 */
+/* 05. 조회 결과 요약 영역 */
 .statistics-result-summary {
-    display: flex;
-    min-height: 48px;
+    display: grid;
+    min-height: 88px;
+    grid-template-columns: auto auto minmax(0, 1fr);
     align-items: center;
-    gap: 10px;
-    overflow: hidden;
-    margin-top: 18px;
-    padding: 9px 14px;
-    border: 1px solid #d8e4f0;
-    border-radius: 8px;
-    background: #f4f8fb;
+    gap: 18px;
+    padding: 16px 20px;
+    border: 1px solid var(--statistics-line);
+    border-left: 4px solid var(--statistics-primary);
+    border-radius: var(--statistics-radius);
+    background: var(--statistics-surface);
+    box-shadow: var(--statistics-shadow);
 }
 
 .statistics-result-summary__label {
-    flex: 0 0 auto;
-    color: #385a78;
+    color: var(--statistics-muted);
     font-size: 12px;
-    font-weight: 400;
-    line-height: 14px;
+    font-weight: 650;
 }
 
 .statistics-result-summary strong {
-    flex: 0 0 auto;
-    color: #173a5e;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 14px;
+    color: var(--statistics-text);
+    font-size: 28px;
+    font-weight: 760;
+    line-height: 1;
+    letter-spacing: -0.035em;
+    white-space: nowrap;
 }
 
 .statistics-result-summary__filters {
     display: flex;
     min-width: 0;
     align-items: center;
+    justify-content: flex-end;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 6px;
 }
 
 .statistics-result-summary__filter {
     display: inline-flex;
     min-height: 27px;
-    flex: 0 0 auto;
     align-items: center;
-    padding: 0 9px;
-    border: 1px solid #c9d9e8;
+    padding: 0 10px;
+    border: 1px solid var(--statistics-line-strong);
     border-radius: 999px;
-    color: #385a78;
-    background: #ffffff;
-    font-size: 12px;
-    font-weight: 400;
-    line-height: 14px;
+    color: #4f6478;
+    background: var(--statistics-surface);
+    font-size: 11px;
+    line-height: 1.4;
     white-space: nowrap;
 }
 
-/* 진단 여부별 도넛 차트 */
-.statistics-diagnosis-panel {
-    overflow: hidden;
-    margin-top: 18px;
-    border: 1px solid var(--statistics-line);
-    border-radius: 8px;
-    background: var(--statistics-surface);
-}
-
-.statistics-diagnosis-panel__heading {
+.statistics-result-summary[role="status"],
+.statistics-result-summary[role="alert"] {
     display: flex;
-    height: 48px;
-    align-items: center;
-    padding: 0 18px;
-    border-bottom: 1px solid var(--statistics-line);
+    min-height: 64px;
+    color: var(--statistics-muted);
+    font-size: 13px;
+    line-height: 1.5;
 }
 
-.statistics-diagnosis-panel__heading h2 {
-    margin: 0;
-    color: #1a1a1c;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 20px;
+.statistics-result-summary[role="alert"] {
+    border-left-color: var(--statistics-danger);
+    color: var(--statistics-danger);
+    background: #fffafa;
 }
 
-.statistics-diagnosis-panel__body {
-    padding: 18px;
-}
-
+/* 06. 진단 여부 도넛 차트 영역 */
 .statistics-diagnosis-grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -265,53 +324,42 @@
 
 .statistics-diagnosis-card {
     min-width: 0;
-    padding: 16px;
+    padding: 18px;
     border: 1px solid var(--statistics-line);
-    border-radius: 7px;
-    background: #ffffff;
+    border-radius: var(--statistics-inner-radius);
+    background: var(--statistics-surface-subtle);
 }
 
 .statistics-diagnosis-card__heading {
     display: flex;
-    min-height: 49px;
-    align-items: flex-start;
+    align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 20px;
+    gap: 12px;
+    padding-bottom: 16px;
 }
 
 .statistics-diagnosis-card__heading h3 {
     margin: 0;
-    color: #667085;
+    color: #3e5366;
     font-size: 13px;
     font-weight: 700;
-    line-height: 13px;
-}
-
-.statistics-diagnosis-card__heading p {
-    margin: 5px 0 0;
-    color: #87909f;
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 11px;
+    line-height: 1.4;
 }
 
 .statistics-diagnosis-card__heading > span {
     flex: 0 0 auto;
-    padding-bottom: 7px;
-    color: #667085;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 12px;
+    color: var(--statistics-muted);
+    font-size: 11px;
+    line-height: 1.4;
     white-space: nowrap;
 }
 
 .statistics-diagnosis-card__content {
     display: grid;
-    height: 205px;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    align-items: stretch;
-    gap: 28px;
+    min-height: 198px;
+    grid-template-columns: minmax(170px, 0.9fr) minmax(210px, 1.1fr);
+    align-items: center;
+    gap: 22px;
 }
 
 .statistics-donut {
@@ -322,8 +370,8 @@
 }
 
 .statistics-donut svg {
-    width: 176px;
-    height: 176px;
+    width: 168px;
+    height: 168px;
     overflow: visible;
     transform: rotate(-90deg);
 }
@@ -331,11 +379,11 @@
 .statistics-donut__track,
 .statistics-donut__segment {
     fill: none;
-    stroke-width: 32px;
+    stroke-width: 28px;
 }
 
 .statistics-donut__track {
-    stroke: #eef0f3;
+    stroke: #e7ecef;
 }
 
 .statistics-donut__segment {
@@ -349,22 +397,22 @@
     align-items: center;
     flex-direction: column;
     justify-content: center;
-    gap: 7px;
+    gap: 5px;
     pointer-events: none;
 }
 
 .statistics-donut__center strong {
-    color: #173a5e;
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 25px;
+    color: var(--statistics-primary);
+    font-size: 24px;
+    font-weight: 760;
+    line-height: 1;
+    letter-spacing: -0.03em;
 }
 
 .statistics-donut__center span {
-    color: #87909f;
+    color: var(--statistics-muted);
     font-size: 11px;
-    font-weight: 400;
-    line-height: 11px;
+    line-height: 1.4;
 }
 
 .statistics-diagnosis-legend {
@@ -372,117 +420,84 @@
     min-width: 0;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
+    gap: 8px;
 }
 
 .statistics-diagnosis-legend__item {
     display: grid;
-    height: 38px;
-    min-width: 0;
-    grid-template-columns: 10px minmax(0, 1fr) max-content 48px;
+    min-height: 38px;
+    grid-template-columns: 9px minmax(0, 1fr) max-content 46px;
     align-items: center;
-    column-gap: 9px;
-    padding: 8px 10px;
+    gap: 8px;
+    padding: 7px 10px;
     border: 1px solid var(--statistics-line);
-    border-radius: 6px;
-    background: #f8f9fb;
+    border-radius: var(--statistics-inner-radius);
+    background: var(--statistics-surface);
 }
 
 .statistics-diagnosis-legend__item i {
-    width: 9px;
-    height: 9px;
-    border-radius: 999px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
 }
 
 .statistics-diagnosis-legend__item span {
     overflow: hidden;
-    color: #4b5565;
-    font-size: 12px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 12px;
+    color: #4a5d6f;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.4;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .statistics-diagnosis-legend__item strong {
-    color: #173a5e;
+    color: var(--statistics-text);
     font-size: 12px;
-    font-weight: 700;
-    line-height: 12px;
+    font-weight: 720;
+    line-height: 1.4;
     white-space: nowrap;
 }
 
 .statistics-diagnosis-legend__item em {
-    color: #87909f;
-    font-size: 12px;
+    color: var(--statistics-muted);
+    font-size: 11px;
     font-style: normal;
-    font-weight: 400;
-    line-height: 12px;
+    line-height: 1.4;
     text-align: right;
     white-space: nowrap;
 }
 
 .statistics-diagnosis-card__footnote {
-    min-height: 23px;
-    margin: 0;
-    padding-top: 12px;
-    color: #87909f;
-    font-size: 11px;
-    font-weight: 400;
-    line-height: 11px;
+    min-height: 14px;
+    margin: 11px 0 0;
+    color: var(--statistics-muted);
+    font-size: 10px;
+    line-height: 1.4;
 }
 
-/* 점검기관 구분별 가로 막대차트 */
-
-.statistics-agency-panel {
-    overflow: hidden;
-    margin-top: 18px;
-    border: 1px solid var(--statistics-line);
-    border-radius: 8px;
-    background: var(--statistics-surface);
-}
-
-.statistics-agency-panel__heading {
-    display: flex;
-    height: 48px;
-    align-items: center;
-    padding: 0 18px;
-    border-bottom: 1px solid var(--statistics-line);
-}
-
-.statistics-agency-panel__heading h2 {
-    margin: 0;
-    color: #1a1a1c;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 20px;
-}
-
-.statistics-agency-panel__body {
-    padding: 18px;
-}
-
+/* 07. 점검기관 구분 막대 차트 영역 */
 .statistics-agency-bars {
     display: flex;
     min-width: 0;
     flex-direction: column;
-    gap: 12px;
+    gap: 11px;
 }
 
 .statistics-agency-bars__row {
     display: grid;
     min-width: 0;
-    grid-template-columns: 145px minmax(0, 1fr) 50px;
+    grid-template-columns: 155px minmax(0, 1fr) 48px;
     align-items: center;
-    column-gap: 12px;
+    gap: 13px;
 }
 
 .statistics-agency-bars__label {
     overflow: hidden;
-    color: #4b5565;
-    font-size: 12px;
-    line-height: 18px;
+    color: #4d6071;
+    font-size: 11px;
+    font-weight: 550;
+    line-height: 1.5;
     text-align: right;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -490,96 +505,80 @@
 
 .statistics-agency-bars__track {
     display: block;
-    height: 18px;
+    height: 16px;
     overflow: hidden;
     border-radius: 3px;
-    background: #f2f4f7;
+    background: #e9eef2;
 }
 
 .statistics-agency-bars__fill {
     display: block;
     height: 100%;
-    border-radius: 3px 0 0 3px;
-    background: #21527f;
+    border-radius: 3px;
+    background: #2e638e;
     transition: width 0.2s ease;
 }
 
 .statistics-agency-bars__row strong {
-    color: #4b5565;
-    font-size: 12px;
+    color: var(--statistics-text-secondary);
+    font-size: 11px;
     font-weight: 700;
-    line-height: 18px;
+    line-height: 1.5;
     text-align: right;
     white-space: nowrap;
 }
 
-/* 점검기관 등록정보 목록 */
-
-.statistics-registration-panel {
-    overflow: hidden;
-    margin-top: 18px;
-    border: 1px solid var(--statistics-line);
-    border-radius: 8px;
-    background: var(--statistics-surface);
-}
-
-.statistics-registration-panel__heading {
-    display: flex;
-    height: 48px;
-    align-items: center;
-    padding: 0 18px;
-    border-bottom: 1px solid var(--statistics-line);
-}
-
-.statistics-registration-panel__heading h2 {
-    margin: 0;
-    color: #1a1a1c;
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 20px;
-}
-
-.statistics-registration-panel__body {
-    padding: 18px;
-}
-
+/* 08. 등록정보 테이블 영역 */
 .statistics-registration-table__scroll {
     width: 100%;
     overflow-x: auto;
+    border: 1px solid var(--statistics-line);
+    border-radius: var(--statistics-inner-radius);
+    scrollbar-color: #b7c4cf var(--statistics-surface-subtle);
+    scrollbar-width: thin;
 }
 
 .statistics-registration-table {
     width: 100%;
-    min-width: 1325px;
+    min-width: 1265px;
     border-collapse: collapse;
     table-layout: fixed;
-    border-top: 1px solid var(--statistics-line);
-    border-bottom: 1px solid var(--statistics-line);
 }
 
 .statistics-registration-table th,
 .statistics-registration-table td {
-    height: 35px;
+    height: 44px;
     padding: 0 10px;
     overflow: hidden;
-    color: #202938;
-    font-size: 12px;
-    line-height: 12px;
+    border-bottom: 1px solid var(--statistics-line);
+    color: #263746;
+    font-size: 11.5px;
+    line-height: 1.4;
     text-align: left;
     white-space: nowrap;
 }
 
 .statistics-registration-table th {
-    color: #667085;
-    background: #f8fafc;
-    font-weight: 600;
+    color: #536677;
+    background: #f4f7f9;
+    font-size: 11px;
+    font-weight: 700;
 }
 
 .statistics-registration-table tbody tr {
-    border-top: 1px solid var(--statistics-line);
+    transition: background-color 0.12s ease;
 }
 
-.statistics-registration-table__agency-name {
+.statistics-registration-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.statistics-registration-table tbody tr:hover {
+    background: var(--statistics-surface-subtle);
+}
+
+.statistics-registration-table td.statistics-registration-table__agency-name {
+    color: var(--statistics-primary);
     font-weight: 700;
 }
 
@@ -590,8 +589,8 @@
     white-space: nowrap;
 }
 
-.statistics-table-align-center {
-    text-align: center !important;
+.statistics-registration-table .statistics-table-align-center {
+    text-align: center;
 }
 
 .statistics-col--row-number {
@@ -599,57 +598,61 @@
 }
 
 .statistics-col--agency-number {
-    width: 115px;
+    width: 104px;
 }
 
 .statistics-col--agency-name {
-    width: 190px;
+    width: 170px;
 }
 
 .statistics-col--agency-type {
-    width: 125px;
+    width: 132px;
 }
 
 .statistics-col--building-name {
     width: 145px;
 }
 
+.statistics-col--address {
+    width: 230px;
+}
+
 .statistics-col--request-size {
-    width: 270px;
+    width: 190px;
 }
 
 .statistics-col--diagnosis {
-    width: 80px;
+    width: 70px;
 }
 
 .statistics-col--actions {
-    width: 115px;
+    width: 106px;
 }
 
 .statistics-diagnosis-badge {
     display: inline-flex;
-    width: 42px;
-    height: 25px;
+    width: 36px;
+    height: 24px;
     align-items: center;
     justify-content: center;
     border-radius: 999px;
-    font-size: 11px;
-    font-weight: 700;
+    font-size: 10px;
+    font-weight: 750;
 }
 
 .statistics-diagnosis-badge--yes {
-    color: #238b57;
-    background: #e9f7ef;
+    color: var(--statistics-success);
+    background: #e9f5ef;
 }
 
 .statistics-diagnosis-badge--no {
-    color: #5c6570;
-    background: #eef0f3;
+    color: #596774;
+    background: #edf0f2;
 }
 
 .statistics-diagnosis-badge--unknown {
-    color: #b25d0b;
-    background: #fff3e6;
+    color: var(--statistics-warning);
+    background: #fff3e8;
 }
 
 .statistics-registration-table__actions {
@@ -660,66 +663,77 @@
 }
 
 .statistics-registration-table__actions button {
-    width: 43px;
-    height: 30px;
-    padding: 0;
-    border: 1px solid #e2e2e2;
-    border-radius: 7px;
+    height: 28px;
+    padding: 0 9px;
+    border: 1px solid var(--statistics-line-strong);
+    border-radius: 5px;
     cursor: pointer;
-    color: #202938;
-    background: #ffffff;
+    color: var(--statistics-text-secondary);
+    background: var(--statistics-surface);
     font: inherit;
-    font-size: 12px;
-    font-weight: 600;
+    font-size: 11px;
+    font-weight: 650;
+    transition:
+            border-color 0.15s ease,
+            color 0.15s ease,
+            background-color 0.15s ease;
+    align-items: center;
+    display: flex;
 }
 
 .statistics-registration-table__actions button:hover {
-    border-color: #bfc5cc;
-    background: #f8fafc;
+    border-color: var(--statistics-primary);
+    color: var(--statistics-primary);
+    background: var(--statistics-primary-soft);
 }
 
-.statistics-registration-table__empty {
-    height: 120px !important;
-    color: #87909f !important;
-    text-align: center !important;
+.statistics-registration-table td.statistics-registration-table__empty {
+    height: 132px;
+    color: var(--statistics-muted);
+    text-align: center;
 }
 
-/* 페이지네이션 */
+/* 09. 페이지네이션 및 상태 영역 */
 .statistics-pagination {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
     gap: 5px;
-    padding: 15px 0 2px;
+    padding: 18px 0 2px;
 }
 
 .statistics-pagination button {
-    width: 33px;
+    min-width: 32px;
     height: 31px;
-    padding: 0;
-    border: 1px solid #d3d8e0;
+    padding: 0 8px;
+    border: 1px solid var(--statistics-line-strong);
     border-radius: 5px;
     cursor: pointer;
-    color: #667085;
-    background: #ffffff;
+    color: #5d6e7e;
+    background: var(--statistics-surface);
     font: inherit;
     font-size: 11px;
+    transition:
+            border-color 0.15s ease,
+            color 0.15s ease,
+            background-color 0.15s ease;
 }
 
 .statistics-pagination button:hover:not(:disabled) {
-    border-color: #173a5e;
+    border-color: var(--statistics-primary);
+    color: var(--statistics-primary);
 }
 
 .statistics-pagination button:disabled {
     cursor: default;
-    color: rgb(102 112 133 / 45%);
-    border-color: rgb(211 216 224 / 45%);
+    opacity: 0.42;
 }
 
 .statistics-pagination .statistics-pagination__button--active {
-    border-color: #173a5e;
+    border-color: var(--statistics-primary);
     color: #ffffff;
-    background: #173a5e;
+    background: var(--statistics-primary);
 }
 
 .statistics-visually-hidden {
@@ -732,49 +746,81 @@
     clip-path: inset(50%);
 }
 
-/* 반응형 */
-@media (max-width: 1200px) {
+/* 10. 반응형 */
+@media (max-width: 1120px) {
     .statistics-search__grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
     .statistics-diagnosis-grid {
         grid-template-columns: 1fr;
     }
+
+    .statistics-diagnosis-card__content {
+        grid-template-columns: minmax(180px, 0.8fr) minmax(250px, 1.2fr);
+    }
 }
 
-@media (max-width: 760px) {
+@media (max-width: 820px) {
     .statistics-page {
-        padding-right: 20px;
-        padding-left: 20px;
+        padding-right: 18px;
+        padding-left: 18px;
+    }
+
+    .statistics-search__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .statistics-result-summary {
+        grid-template-columns: auto 1fr;
+    }
+
+    .statistics-result-summary__filters {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 620px) {
+    .statistics-page {
+        padding: 20px 14px 34px;
+    }
+
+    .statistics-page__inner {
+        gap: 18px;
+    }
+
+    .statistics-page__heading {
+        padding-left: 0;
+    }
+
+    .statistics-page__heading h1 {
+        font-size: 21px;
+    }
+
+    .statistics-page__heading p {
+        margin-top: 5px;
+        font-size: 12px;
+    }
+
+    .statistics-search__heading,
+    .statistics-diagnosis-panel__heading,
+    .statistics-agency-panel__heading,
+    .statistics-registration-panel__heading {
+        min-height: 45px;
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+
+    .statistics-search__form,
+    .statistics-diagnosis-panel__body,
+    .statistics-agency-panel__body,
+    .statistics-registration-panel__body {
+        padding: 16px;
     }
 
     .statistics-search__grid {
         grid-template-columns: 1fr;
-    }
-
-    .statistics-diagnosis-card__content {
-        height: auto;
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-
-    .statistics-donut {
-        min-height: 205px;
-    }
-}
-
-@media (max-width: 640px) {
-    .statistics-page {
-        padding: 22px 16px 32px;
-    }
-
-    .statistics-page__heading h1 {
-        font-size: 22px;
-    }
-
-    .statistics-search__form {
-        padding: 16px;
     }
 
     .statistics-search__actions {
@@ -786,30 +832,68 @@
         width: 100%;
     }
 
+    .statistics-field input,
+    .statistics-field select {
+        font-size: 16px;
+    }
+
     .statistics-result-summary {
-        align-items: center;
-        flex-wrap: wrap;
+        gap: 10px;
+        padding: 15px 16px;
     }
 
-    .statistics-result-summary__filters {
-        flex-basis: 100%;
-    }
-
-    .statistics-diagnosis-panel__body {
-        padding: 14px;
+    .statistics-result-summary strong {
+        font-size: 24px;
     }
 
     .statistics-diagnosis-card {
-        padding: 14px;
+        padding: 16px;
     }
 
-    .statistics-diagnosis-card__heading {
-        align-items: flex-start;
-        flex-direction: column;
+    .statistics-diagnosis-card__content {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .statistics-donut {
+        min-height: 185px;
+    }
+
+    .statistics-agency-bars__row {
+        grid-template-columns: 105px minmax(0, 1fr) 40px;
         gap: 8px;
     }
 
-    .statistics-diagnosis-card__heading > span {
-        padding-bottom: 0;
+    .statistics-agency-bars__label {
+        text-align: left;
+    }
+}
+
+@media (max-width: 380px) {
+    .statistics-page {
+        padding-right: 12px;
+        padding-left: 12px;
+    }
+
+    .statistics-diagnosis-legend__item {
+        grid-template-columns: 8px minmax(0, 1fr) max-content 42px;
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .statistics-agency-bars__row {
+        grid-template-columns: 92px minmax(0, 1fr) 38px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .statistics-field input,
+    .statistics-field select,
+    .statistics-button,
+    .statistics-agency-bars__fill,
+    .statistics-registration-table tbody tr,
+    .statistics-registration-table__actions button,
+    .statistics-pagination button {
+        transition: none;
     }
 }
