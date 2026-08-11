@@ -213,6 +213,10 @@ h2 {
 }
 
 @media (max-width: 760px) {
+    :root {
+        --app-topbar-height: 112px;
+    }
+
     .workspace {
         grid-template-columns: 1fr;
     }

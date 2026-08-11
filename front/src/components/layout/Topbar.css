@@ -125,3 +125,68 @@
         left: 12px;
     }
 }
+
+@media (max-width: 760px) {
+    .app-topbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 8px 12px 0;
+    }
+
+    .app-topbar__brand {
+        width: 100%;
+        min-width: 0;
+        height: 48px;
+        flex: 0 0 48px;
+        gap: 10px;
+    }
+
+    .app-topbar__brand-mark {
+        width: 34px;
+        height: 34px;
+        flex-basis: 34px;
+        border-radius: 7px;
+        font-size: 12px;
+    }
+
+    .app-topbar__brand-copy {
+        min-width: 0;
+        overflow: hidden;
+    }
+
+    .app-topbar__brand-copy strong {
+        font-size: 15px;
+    }
+
+    .app-topbar__brand-copy > span {
+        overflow: hidden;
+        margin-top: 2px;
+        font-size: 11px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .app-topbar__navigation {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        flex: 1 1 auto;
+        margin-left: 0;
+    }
+
+    .app-topbar__navigation-link {
+        min-width: 0;
+        flex: 1 1 auto;
+        justify-content: center;
+        overflow: hidden;
+        padding: 0 6px;
+        font-size: 13px;
+        text-overflow: ellipsis;
+    }
+
+    .app-topbar__navigation-link::after {
+        right: 6px;
+        left: 6px;
+    }
+}
