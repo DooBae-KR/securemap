@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
-import StatisticsPage from "./pages/StatisticsPage";
-import MapPage from "./pages/MapPage";
+import Topbar from "./components/layout/Topbar"
+import MapPage from "./pages/map/MapPage";
+import StatisticsPage from "./pages/statistics/StatisticsPage";
 
 type AppPage = "map" | "statistics";
 
@@ -19,11 +20,24 @@ function App() {
         window.addEventListener("hashchange", handleHashChange);
 
         return () => {
-            window.removeEventListener("hashchange", handleHashChange);
+            window.removeEventListener(
+                "hashchange",
+                handleHashChange,
+            );
         };
     }, []);
 
-    return page === "statistics" ? <StatisticsPage/> : <MapPage/>;
+    return (
+        <div className="app-layout">
+            <Topbar currentPage={page}/>
+
+            <div className="app-layout__content">
+                {page === "statistics"
+                    ? <StatisticsPage/>
+                    : <MapPage/>}
+            </div>
+        </div>
+    );
 }
 
 export default App;

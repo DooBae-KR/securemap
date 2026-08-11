@@ -20,7 +20,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 강남구 도곡로1길 24 (역삼동)"
 	},
 	{
 		"BUILD_ID" : 11196,
@@ -33,7 +34,7 @@
 		"NA_UGRND_CD" : "0",
 		"NA_BUN" : "30",
 		"NA_SUB_BUN" : "0",
-		"BUILD_NM" : "",
+		"BUILD_NM" : "해오름빌",
 		"STATE_CD" : "4",
 		"STATE_NM" : "결재완료",
 		"REQ_SIZE_CD" : "10,20",
@@ -42,7 +43,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 송파구 백제고분로48가길 5 (방이동, 해오름빌)"
 	},
 	{
 		"BUILD_ID" : 11212,
@@ -55,7 +57,7 @@
 		"NA_UGRND_CD" : "0",
 		"NA_BUN" : "49",
 		"NA_SUB_BUN" : "0",
-		"BUILD_NM" : "",
+		"BUILD_NM" : "복빌딩",
 		"STATE_CD" : "5",
 		"STATE_NM" : "",
 		"REQ_SIZE_CD" : "10,20",
@@ -64,7 +66,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 서초구 서초중앙로 149-12 (서초동)"
 	},
 	{
 		"BUILD_ID" : 11700,
@@ -77,7 +80,7 @@
 		"NA_UGRND_CD" : "0",
 		"NA_BUN" : "212",
 		"NA_SUB_BUN" : "0",
-		"BUILD_NM" : "",
+		"BUILD_NM" : "대명투웨니퍼스트",
 		"STATE_CD" : "5",
 		"STATE_NM" : "",
 		"REQ_SIZE_CD" : "10",
@@ -86,7 +89,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 강서구 공항대로 653-5 (염창동)"
 	},
 	{
 		"BUILD_ID" : 11702,
@@ -99,7 +103,7 @@
 		"NA_UGRND_CD" : "0",
 		"NA_BUN" : "10",
 		"NA_SUB_BUN" : "0",
-		"BUILD_NM" : "",
+		"BUILD_NM" : "문래 롯데캐슬",
 		"STATE_CD" : "1",
 		"STATE_NM" : "작성",
 		"REQ_SIZE_CD" : "10",
@@ -108,7 +112,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 영등포구 선유로9길 30 (문래동6가, 문래 롯데캐슬)"
 	},
 	{
 		"BUILD_ID" : 11704,
@@ -121,7 +126,7 @@
 		"NA_UGRND_CD" : "0",
 		"NA_BUN" : "148",
 		"NA_SUB_BUN" : "0",
-		"BUILD_NM" : "",
+		"BUILD_NM" : "대광빌딩",
 		"STATE_CD" : "1",
 		"STATE_NM" : "작성",
 		"REQ_SIZE_CD" : "10,20,30",
@@ -130,7 +135,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 송파구 오금로 144 (송파동)"
 	},
 	{
 		"BUILD_ID" : 11706,
@@ -143,7 +149,7 @@
 		"NA_UGRND_CD" : "0",
 		"NA_BUN" : "57",
 		"NA_SUB_BUN" : "0",
-		"BUILD_NM" : "",
+		"BUILD_NM" : "앵콜칼국수 본점",
 		"STATE_CD" : "4",
 		"STATE_NM" : "결재완료",
 		"REQ_SIZE_CD" : "10,20,30",
@@ -152,7 +158,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 서초구 효령로52길 69 (서초동)"
 	},
 	{
 		"BUILD_ID" : 11708,
@@ -165,7 +172,7 @@
 		"NA_UGRND_CD" : "0",
 		"NA_BUN" : "16",
 		"NA_SUB_BUN" : "0",
-		"BUILD_NM" : "",
+		"BUILD_NM" : "봄날아침빌딩",
 		"STATE_CD" : "5",
 		"STATE_NM" : "",
 		"REQ_SIZE_CD" : "10",
@@ -174,7 +181,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 서초구 마방로 8 (양재동)"
 	},
 	{
 		"BUILD_ID" : 11710,
@@ -187,7 +195,7 @@
 		"NA_UGRND_CD" : "0",
 		"NA_BUN" : "8",
 		"NA_SUB_BUN" : "0",
-		"BUILD_NM" : "",
+		"BUILD_NM" : "하호제",
 		"STATE_CD" : "1",
 		"STATE_NM" : "작성",
 		"REQ_SIZE_CD" : "10,20",
@@ -196,7 +204,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 용산구 원효로53길 37 (용문동)"
 	},
 	{
 		"BUILD_ID" : 11712,
@@ -209,7 +218,7 @@
 		"NA_UGRND_CD" : "0",
 		"NA_BUN" : "583",
 		"NA_SUB_BUN" : "0",
-		"BUILD_NM" : "",
+		"BUILD_NM" : "한강브루클린하이츠",
 		"STATE_CD" : "1",
 		"STATE_NM" : "작성",
 		"REQ_SIZE_CD" : "10,20,30",
@@ -218,7 +227,8 @@
 		"CHK_YN" : "Y",
 		"CHK_COM_CD" : "1",
 		"LAT" : 0,
-		"LNG" : 0
+		"LNG" : 0,
+		"ADDRESS" : "서울특별시 강서구 양천로 744 (염창동)"
 	}
 ],
 

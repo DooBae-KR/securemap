@@ -1,229 +1,233 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+
 :root {
-  font-family: Arial, sans-serif;
-  color: #222;
-  background: #fff;
-  font-synthesis: none;
+        font-family: "Pretendard Variable",
+        Pretendard,
+        "Noto Sans KR",
+        "Apple SD Gothic Neo",
+        Arial,
+        sans-serif;
+    color: #222;
+    background: #fff;
+    font-synthesis: none;
+    --app-topbar-height: 70px;
 }
 
 * {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 body {
-  margin: 0;
-  min-width: 320px;
+    margin: 0;
+    min-width: 320px;
 }
 
 button {
-  font: inherit;
-}
-
-.app-shell {
-  min-height: 100vh;
-}
-
-.topbar {
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  padding: 16px 24px;
+    font: inherit;
 }
 
 .eyebrow,
 .section-label {
-  color: #666;
-  font-size: 12px;
-  margin: 0 0 5px;
+    color: #666;
+    font-size: 12px;
+    margin: 0 0 5px;
 }
 
 h1,
 h2,
 p {
-  margin-top: 0;
+    margin-top: 0;
 }
 
 h1 {
-  font-size: 24px;
-  font-weight: 600;
-  margin: 0;
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0;
 }
 
 .result-count {
-  color: #666;
-  font-size: 13px;
-  margin: 0;
+    color: #666;
+    font-size: 13px;
+    margin: 0;
 }
 
 .workspace {
-  display: grid;
-  grid-template-columns: 360px minmax(0, 1fr);
-  min-height: calc(100vh - 73px);
+    display: grid;
+    grid-template-columns: 360px minmax(0, 1fr);
+    min-height: calc(100vh - var(--app-topbar-height));
 }
 
 .building-panel {
-  border-right: 1px solid #ddd;
-  min-width: 0;
+    border-right: 1px solid #ddd;
+    min-width: 0;
+    background: #ffffff;
 }
 
 .panel-heading {
-  align-items: center;
-  border-bottom: 1px solid #ddd;
-  display: flex;
-  justify-content: space-between;
-  padding: 18px 20px;
+    align-items: center;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px 20px;
 }
 
 h2 {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
 }
 
 .count-badge {
-  color: #666;
-  font-size: 13px;
+    color: #666;
+    font-size: 13px;
 }
 
 .building-list {
-  max-height: calc(100vh - 145px);
-  overflow-y: auto;
+    max-height: calc(100vh - 145px);
+    overflow-y: auto;
 }
 
 .building-item {
-  align-items: center;
-  background: #fff;
-  border: 0;
-  border-bottom: 1px solid #eee;
-  color: #222;
-  cursor: pointer;
-  display: grid;
-  gap: 10px;
-  grid-template-columns: 25px 1fr 16px;
-  padding: 14px 20px;
-  text-align: left;
-  width: 100%;
+    align-items: center;
+    background: #fff;
+    border: 0;
+    border-bottom: 1px solid #eee;
+    color: #222;
+    cursor: pointer;
+    display: grid;
+    gap: 10px;
+    grid-template-columns: 25px 1fr 16px;
+    padding: 14px 20px;
+    text-align: left;
+    width: 100%;
 }
 
 .building-item:hover,
 .building-item.selected {
-  background: #f2f2f2;
+    background: #f2f2f2;
 }
 
 .item-number,
 .item-arrow {
-  color: #888;
-  font-size: 12px;
+    color: #888;
+    font-size: 12px;
 }
 
 .item-content {
-  display: grid;
-  gap: 4px;
-  min-width: 0;
+    display: grid;
+    gap: 4px;
+    min-width: 0;
 }
 
 .item-content strong {
-  font-size: 14px;
-  font-weight: 600;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    font-size: 14px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .item-content small {
-  color: #777;
-  font-size: 12px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+    color: #777;
+    font-size: 12px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .state-message {
-  color: #666;
-  font-size: 14px;
-  padding: 20px;
+    color: #666;
+    font-size: 14px;
+    padding: 20px;
 }
 
 .error-message {
-  color: #b3261e;
+    color: #b3261e;
 }
 
 .map-panel {
-  min-width: 0;
-  position: relative;
+    min-width: 0;
+    position: relative;
 }
 
 .map {
-  background: #eee;
-  height: 100%;
-  min-height: 500px;
-  width: 100%;
+    background: #eee;
+    height: 100%;
+    min-height: 500px;
+    width: 100%;
 }
 
 .map-unavailable {
-  align-items: center;
-  color: #666;
-  display: flex;
-  justify-content: center;
-  padding: 20px;
-  text-align: center;
+    align-items: center;
+    color: #666;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    text-align: center;
 }
 
 .map-caption {
-  background: #fff;
-  border: 1px solid #ddd;
-  bottom: 12px;
-  color: #666;
-  font-size: 12px;
-  left: 12px;
-  padding: 7px 10px;
-  position: absolute;
+    background: #fff;
+    border: 1px solid #ddd;
+    bottom: 12px;
+    color: #666;
+    font-size: 12px;
+    left: 12px;
+    padding: 7px 10px;
+    position: absolute;
 }
 
 .live-dot {
-  display: none;
+    display: none;
 }
 
 .building-info-window {
-  display: grid;
-  gap: 5px;
-  min-width: 180px;
-  padding: 10px 12px;
+    display: grid;
+    gap: 5px;
+    min-width: 180px;
+    padding: 10px 12px;
 }
 
 .building-info-window strong {
-  font-size: 14px;
-  font-weight: 600;
+    font-size: 14px;
+    font-weight: 600;
 }
 
 .building-info-window span {
-  color: #666;
-  font-size: 12px;
-  line-height: 1.4;
+    color: #666;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.app-layout {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    color: #202938;
+    background: #eef2f6;
+}
+
+.app-layout__content {
+    min-height: 0;
+    flex: 1;
 }
 
 @media (max-width: 760px) {
-  .topbar {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 8px;
-  }
+    .workspace {
+        grid-template-columns: 1fr;
+    }
 
-  .workspace {
-    grid-template-columns: 1fr;
-  }
+    .building-panel {
+        border-bottom: 1px solid #ddd;
+        border-right: 0;
+    }
 
-  .building-panel {
-    border-bottom: 1px solid #ddd;
-    border-right: 0;
-  }
+    .building-list {
+        max-height: 320px;
+    }
 
-  .building-list {
-    max-height: 320px;
-  }
-
-  .map,
-  .map-panel {
-    min-height: 420px;
-  }
+    .map,
+    .map-panel {
+        min-height: 420px;
+    }
 }

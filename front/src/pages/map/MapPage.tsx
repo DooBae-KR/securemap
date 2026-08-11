@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {fetchBuildings, type Building} from "../api/buildings";
+import {fetchBuildings, type Building} from "../../api/buildings";
 
 function escapeHtml(value: string) {
     return value.replace(/[&<>'"]/g, (character) => (
@@ -137,13 +137,6 @@ function MapPage() {
 
     return (
         <div className="app-shell">
-            <header className="topbar">
-                <div>
-                    <h1>SecureMap</h1>
-                </div>
-                <p className="result-count">{buildings.length} places mapped</p>
-            </header>
-
             <main className="workspace">
                 <aside className="building-panel">
                     <div className="panel-heading">
