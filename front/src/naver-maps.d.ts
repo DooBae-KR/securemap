@@ -11,10 +11,13 @@ declare namespace naver.maps {
     constructor(x: number, y: number);
   }
 
-  class Map {
-    constructor(element: HTMLElement, options: MapOptions);
-    morph(position: LatLng): void;
-  }
+ class Map {
+  constructor(element: HTMLElement, options: MapOptions);
+
+  morph(position: LatLng): void;
+  panTo(position: LatLng): void;
+  setZoom(zoom: number): void;
+}
 
   class Marker {
     constructor(options: MarkerOptions);

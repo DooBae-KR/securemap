@@ -1,0 +1,528 @@
+.workspace {
+  height: calc(100vh - 72px);
+  display: grid;
+  grid-template-columns: 290px minmax(0, 1fr);
+}
+
+/* =========================
+   왼쪽 사이드바
+   ========================= */
+
+.sidebar {
+  height: 100%;
+  overflow-y: auto;
+  border-right: 1px solid #dbe2ea;
+  background: #ffffff;
+}
+
+.sidebar-section {
+  padding: 18px;
+  border-bottom: 1px solid #e6ebf0;
+}
+
+.sidebar h2,
+.sidebar h3 {
+  margin: 0;
+}
+
+.sidebar h2 {
+  font-size: 16px;
+}
+
+.sidebar h3 {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.section-description {
+  margin: 10px 0 18px;
+  color: #6a7480;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #4a5561;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* =========================
+   검색
+   ========================= */
+
+.search-box {
+  position: relative;
+}
+
+.search-box input {
+  width: 100%;
+  height: 38px;
+  padding: 0 38px 0 12px;
+  border: 1px solid #d3dce5;
+  border-radius: 4px;
+  outline: none;
+  color: #1f2933;
+  font-size: 12px;
+}
+
+.search-box input:focus {
+  border-color: #356b9e;
+}
+
+.search-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #52606d;
+  font-size: 19px;
+}
+
+.reset-button {
+  display: block;
+  margin: 8px 0 0 auto;
+  border: 0;
+  background: transparent;
+  color: #356b9e;
+  font-size: 11px;
+  cursor: pointer;
+}
+
+/* =========================
+   검색 결과
+   ========================= */
+
+.section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.section-title-row span {
+  color: #7b8794;
+  font-size: 11px;
+}
+
+.result-section {
+  padding-right: 8px;
+}
+
+.building-list {
+  max-height: 310px;
+  padding-right: 8px;
+  overflow-y: auto;
+}
+
+.building-card {
+  width: 100%;
+  margin-bottom: 8px;
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #e0e5eb;
+  border-radius: 5px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.building-card:hover {
+  background: #f8fafc;
+}
+
+.building-card.selected {
+  border-color: #2e658f;
+  background: #f4f9fd;
+}
+
+.building-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.building-card strong {
+  min-width: 0;
+  color: #27313a;
+  font-size: 13px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.building-card p {
+  margin: 8px 0 3px;
+  color: #717c87;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.building-card small {
+  color: #89939d;
+  font-size: 10px;
+}
+
+/* =========================
+   검사기한 상태 배지
+   ========================= */
+
+.status-badge {
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 5px;
+  border-radius: 999px;
+  padding: 5px 8px;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.status-dot,
+.filter-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  border-radius: 50%;
+}
+
+/* 정상 */
+.status-badge.normal {
+  color: #238359;
+  background: #e8f7ef;
+}
+
+/* 기한 임박 */
+.status-badge.warning {
+  color: #9a6400;
+  background: #fff4db;
+}
+
+/* 기한 초과 */
+.status-badge.expired {
+  color: #c23a38;
+  background: #fdebea;
+}
+
+/* 기준 미산정 */
+.status-badge.unknown {
+  color: #616c79;
+  background: #edf0f3;
+}
+
+.status-badge.normal .status-dot,
+.filter-dot.normal {
+  background: #1da36c;
+}
+
+.status-badge.warning .status-dot,
+.filter-dot.warning {
+  background: #e69814;
+}
+
+.status-badge.expired .status-dot,
+.filter-dot.expired {
+  background: #dc4742;
+}
+
+.status-badge.unknown .status-dot,
+.filter-dot.unknown {
+  background: #7b8490;
+}
+
+/* =========================
+   로딩 / 에러
+   ========================= */
+
+.state-message {
+  padding: 15px 0;
+  color: #6d7782;
+  font-size: 12px;
+}
+
+.error-message {
+  color: #ba2f2c;
+}
+
+/* =========================
+   표시 설정 / 필터
+   ========================= */
+
+.settings-section,
+.filter-section {
+  display: grid;
+  gap: 14px;
+}
+
+.switch-row,
+.filter-row {
+  display: flex;
+  align-items: center;
+  color: #46515d;
+  font-size: 12px;
+}
+
+.switch-row {
+  justify-content: space-between;
+}
+
+.switch-row input {
+  width: 34px;
+  height: 18px;
+  accent-color: #2186ef;
+}
+
+.filter-row {
+  gap: 8px;
+}
+
+.filter-row input {
+  accent-color: #2186ef;
+}
+
+/* =========================
+   지도
+   ========================= */
+
+.map-area {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+}
+
+.map {
+  width: 100%;
+  height: 100%;
+  background: #eef1f4;
+}
+
+.map-unavailable {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  text-align: center;
+  color: #66717c;
+}
+
+/* =========================
+   건물 상세 패널
+   ========================= */
+
+.building-detail-panel {
+  position: absolute;
+  width: 310px;
+  overflow: hidden;
+  border: 1px solid #d7dfe7;
+  border-radius: 5px;
+  background: #ffffff;
+  box-shadow: 0 8px 26px rgba(40, 50, 60, 0.17);
+  z-index: 100;
+}
+
+.detail-header {
+  min-height: 68px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 13px 14px;
+  color: #ffffff;
+  background: #183f67;
+  cursor: move;
+  user-select: none;
+}
+
+.detail-header strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.detail-header p {
+  margin: 0;
+  color: #d7e3ee;
+  font-size: 9px;
+  line-height: 1.5;
+}
+
+.detail-header button {
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.13);
+  color: #ffffff;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+/* =========================
+   상세정보 행
+   ========================= */
+
+.detail-row {
+  min-height: 44px;
+  display: grid;
+  grid-template-columns: 95px 1fr;
+  align-items: center;
+  padding: 0 14px;
+  border-bottom: 1px solid #ebeff3;
+  font-size: 11px;
+}
+
+.detail-row > span:first-child {
+  color: #66717c;
+}
+
+.detail-row strong {
+  color: #3d4852;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* =========================
+   최근 변경이력
+   ========================= */
+
+.recent-history {
+  margin: 10px;
+  padding: 11px;
+  border: 1px solid #e3e8ed;
+  background: #f9fafb;
+}
+
+.recent-history strong {
+  font-size: 11px;
+}
+
+.recent-history p {
+  margin: 5px 0 0;
+  color: #77818b;
+  font-size: 9px;
+}
+
+/* =========================
+   상세 패널 버튼
+   ========================= */
+
+.detail-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 7px;
+  padding: 3px 10px 12px;
+}
+
+.secondary-button,
+.primary-button {
+  height: 30px;
+  padding: 0 11px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.secondary-button {
+  border: 1px solid #d5dce3;
+  background: #ffffff;
+  color: #4f5c68;
+}
+
+.primary-button {
+  border: 1px solid #193f66;
+  background: #193f66;
+  color: #ffffff;
+}
+
+/* =========================
+   지도 범례
+   ========================= */
+
+.legend-box {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  width: 150px;
+  padding: 12px;
+  border: 1px solid #d6dee6;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 3px 14px rgba(40, 50, 60, 0.11);
+  z-index: 20;
+}
+
+.legend-box strong {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 11px;
+}
+
+.legend-box div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 5px;
+  color: #555f68;
+  font-size: 9px;
+}
+
+/* =========================
+   네이버 지도 InfoWindow
+   ========================= */
+
+.building-info-window {
+  min-width: 200px;
+  display: grid;
+  gap: 7px;
+  padding: 12px 14px;
+}
+
+.building-info-window strong {
+  color: #26313b;
+  font-size: 13px;
+}
+
+.building-info-window span {
+  color: #6e7984;
+  font-size: 10px;
+}
+
+.popup-status {
+  width: fit-content;
+  padding: 4px 7px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.popup-normal {
+  color: #238359 !important;
+  background: #e8f7ef;
+}
+
+.popup-warning {
+  color: #9a6400 !important;
+  background: #fff4db;
+}
+
+.popup-expired {
+  color: #c23a38 !important;
+  background: #fdebea;
+}
+
+.popup-unknown {
+  color: #616c79 !important;
+  background: #edf0f3;
+}
+
+/* =========================
+   작은 화면
+   ========================= */
+
+@media (max-width: 1180px) {
+  .workspace {
+    min-width: 1180px;
+  }
+}
