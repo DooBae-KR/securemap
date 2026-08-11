@@ -1,36 +1,37 @@
-console.log("### NEW building model loaded ###");
+export type Building = {
+    // 건물/점검기관 PK
+    BUILD_ID: number;
 
-const db = require("../db");
+    // 건물명
+    BUILD_NM: string;
 
-async function findAll() {
-    const [rows] = await db.query(`
-        SELECT
-            M.BUILD_ID,
-            M.BUILD_NM,
-            M.CHK_COMPANY_NM,
-            M.STATE_CD,
-            M.STATE_NM,
-            M.REQ_SIZE_CD,
-            M.REQ_SIZE_NM,
-            M.SAFE_CHK_YN,
-            M.CHK_YN,
-            M.CHK_COM_CD,
-            M.LAT,
-            M.LNG,
-            M.ADDRESS,
-            H.CHK_DATE
+    // 점검기관명
+    CHK_COMPANY_NM: string | null;
 
-        FROM MOLIT_MAP_INFO M
+    // 운영상태
+    STATE_CD: string | null;
+    STATE_NM: string | null;
 
-                 LEFT JOIN MOLIT_HISTORY H
-                           ON M.BUILD_ID = H.MOL_HIS_ID
+    // 적용규모
+    REQ_SIZE_CD: string | null;
+    REQ_SIZE_NM: string | null;
 
-        ORDER BY M.BUILD_ID
-    `);
+    // 안전진단 여부
+    SAFE_CHK_YN: string | null;
 
-    return rows;
-}
+    // 점검진단 여부
+    CHK_YN: string | null;
 
-module.exports = {
-    findAll,
+    // 점검기관 구분코드
+    CHK_COM_CD: string | null;
+
+    // 위도 / 경도
+    LAT: string;
+    LNG: string;
+
+    // 주소
+    ADDRESS: string | null;
+
+    // 최근 변경일시
+    CHK_DATE: string | null;
 };
