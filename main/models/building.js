@@ -1,6 +1,6 @@
 console.log("### NEW building model loaded ###");
 
-const db = require("../db");
+const db = require("../config/db");
 
 async function findAll() {
   const [rows] = await db.query(`
