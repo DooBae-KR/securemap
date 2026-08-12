@@ -27,7 +27,7 @@ async function findAll() {
 
     ORDER BY M.BUILD_ID
   `);
-
+  console.log("주소 query?", rows);
   return rows;
 }
 

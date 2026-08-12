@@ -4,6 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "backend": "node main/config/server.js",
+    "frontend": "cd front && npm run dev",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
     "mock": "json-server db.json --port 3002",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,9 +19,10 @@
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "fast-xml-parser": "^5.10.1",
-    "mysql2": "^3.23.1"
+    "mysql2": "^3.23.3"
   },
   "devDependencies": {
+    "concurrently": "^9.2.4",
     "json-server": "^1.0.0-beta.15"
   }
 }
