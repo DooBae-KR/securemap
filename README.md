@@ -1,8 +1,8 @@
 # securemap
 안전지도 프로젝트
 # 디렉토리 구조
-# 프론트
-src
+# 프론트 최상위폴더 (public)
+/src
  ㄴ api/ = API 주소 디렉토리
  ㄴ components/ = 컴포넌트
  ㄴ pages/ = 각 화면 css 및 tsx
