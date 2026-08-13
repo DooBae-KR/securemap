@@ -15,16 +15,29 @@ async function getRightChartData(req, res) {
     try {
         const rChartData = await chart.rChartCount();
         res.status(200).json(rChartData);
-            } catch (err) {
+            } catch (err) { 
         console.error(err);
         res.status(500).json({
             message: "차트 데이터를 불러오지 못했습니다."
         });
     }
 }
+async function getBarChartData(req, res) {
+    try {
+        const barChartData = await chart.barChartCount();
+        res.status(200).json(barChartData);
+            } catch (err) { 
+        console.error(err);
+        res.status(500).json({
+            message: barChartData.title + " 데이터를 불러오지 못했습니다."
+        });
+    }
+}
 
 module.exports = {
     getLeftChartData,
-    getRightChartData
+    getRightChartData,
+    getBarChartData
 };
+    getRightChartData
 };
