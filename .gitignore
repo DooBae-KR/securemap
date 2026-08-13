@@ -8,6 +8,7 @@ out/
 coverage/
 .gradle/
 *.tsbuildinfo
+Dockerfile
 
 # Logs
 *.log
