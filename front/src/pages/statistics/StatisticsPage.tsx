@@ -10,6 +10,10 @@ import "./StatisticsPage.css";
 import {
     fetchMockInspectionAgencies,
 } from "../../api/statisticsMock";
+import {
+    fetchAgencyCompanyCounts,
+    type AgencyCompanyCount,
+} from "../../api/statistics";
 
 import type {
     InspectionAgency,
@@ -103,6 +107,10 @@ type AgencyTypeBar = {
     label: string;
     count: number;
 }
+
+type AgencyCompanyBarChartProps = {
+    counts: AgencyCompanyCount[];
+};
 
 const DIAGNOSIS_SEGMENT_STYLES = [
     {value: "Y", label: "예(Y)", color: "#238b57"},
@@ -371,8 +379,12 @@ type AgencyTypeBarChartProps = {
     agencies: InspectionAgency[];
 };
 
-function AgencyTypeBarChart({agencies,}: AgencyTypeBarChartProps) {
-    const bars = getAgencyTypeBars(agencies);
+function AgencyTypeBarChart({counts,}: AgencyCompanyBarChartProps) {
+    const bars = counts.map((item) => ({
+        code: item.COMPANY_NM,
+        label: item.COMPANY_NM,
+        count: Number(item.CNT) || 0,
+    }));
 
     const maxCount = Math.max(
         ...bars.map((bar) => bar.count),
@@ -615,6 +627,9 @@ function StatisticsPage() {
     const [filteredAgencies, setFilteredAgencies] =
         useState<InspectionAgency[]>([]);
 
+    const [agencyCompanyCounts, setAgencyCompanyCounts] =
+        useState<AgencyCompanyCount[]>([]);
+
     const [isLoading, setIsLoading] = useState(true);
 
     const [loadError, setLoadError] =
@@ -660,6 +675,10 @@ function StatisticsPage() {
                     await fetchMockInspectionAgencies(
                         controller.signal,
                     );
+                const companyCounts =
+                    await fetchAgencyCompanyCounts(
+                        controller.signal,
+                    );
 
                 if (controller.signal.aborted) {
                     return;
@@ -667,6 +686,7 @@ function StatisticsPage() {
 
                 setAllAgencies(agencies);
                 setFilteredAgencies(agencies);
+                setAgencyCompanyCounts(companyCounts);
                 setCurrentPage(1);
             } catch (error: unknown) {
                 if (controller.signal.aborted) {
@@ -1015,7 +1035,7 @@ function StatisticsPage() {
 
                     <div className="statistics-agency-panel__body">
                         <AgencyTypeBarChart
-                            agencies={filteredAgencies}
+                            counts={agencyCompanyCounts}
                         />
                     </div>
                 </section>

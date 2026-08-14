@@ -85,10 +85,24 @@ SELECT 	(SELECT CD_NM FROM COM_CD_TB WHERE CD ='T3' LIMIT 1) AS TITLE
   return rows;
 }
 
+async function agencyCompanyCount() {
+  const [rows] = await db.query(`
+    SELECT
+      COALESCE(NULLIF(TRIM(CHK_COMPANY_NM), ''), '미등록') AS COMPANY_NM,
+      COUNT(*) AS CNT
+    FROM MOLIT_MAP_INFO
+    GROUP BY COALESCE(NULLIF(TRIM(CHK_COMPANY_NM), ''), '미등록')
+    ORDER BY CNT DESC, COMPANY_NM ASC
+  `);
+
+  return rows;
+}
+
 
 
 module.exports = {
   lChartCount,
   rChartCount,  
   barChartCount,
+  agencyCompanyCount,
 };

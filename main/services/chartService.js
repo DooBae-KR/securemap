@@ -16,9 +16,13 @@ async function rChartCount(queryObject) {
   return Chart.rChartCount();
 }
 
+async function agencyCompanyCount() {
+  return Chart.agencyCompanyCount();
+}
 
 
 module.exports = {
   lChartCount,
-  rChartCount
+  rChartCount,
+  agencyCompanyCount
 };
