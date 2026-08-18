@@ -3,14 +3,14 @@
 # 디렉토리 구조
 
 # 프론트 최상위폴더 (public)
-/src
- ㄴ api/ = API 주소 디렉토리
- ㄴ components/ = 컴포넌트
- ㄴ pages/ = 각 화면 css 및 tsx
- ㄴ types/ = 불러올 데이터 정보 타입
- ㄴ app.tsx = 앱 초기화
- =====  추가예정
- ㄴ util/ = 함수 모음
+/src<br>
+ ㄴ api/ = API 주소 디렉토리<br>
+ ㄴ components/ = 컴포넌트<br>
+ ㄴ pages/ = 각 화면 css 및 tsx<br>
+ ㄴ types/ = 불러올 데이터 정보 타입<br>
+ ㄴ app.tsx = 앱 초기화<br>
+ =====  추가예정<br>
+ ㄴ util/ = 함수 모음<br>
 
 # 프론트
 src

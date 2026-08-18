@@ -1,172 +1,332 @@
+// 백엔드 구현 전까지 사용할 파일
 import type {
-    DiagnosisYn,
+    AgencyTypeStatistic,
+    DiagnosisField,
+    DiagnosisStatistic,
+    DiagnosisStatus,
     InspectionAgency,
+    InspectionAgencyPage,
+    MolitMapInfoRow,
+    SearchConditions
 } from "../types/statistics";
 
-type MolitMapInfoRow = {
-    BUILD_ID: number;
-    CHK_COMPANY_NM: string | null;
-    BUILD_NM: string | null;
+import type {
+    CommonCode
+} from "../types/commonCode";
 
-    ADDRESS?: string | null;
-    NEW_ROAD_CD?: string | number | null;
+import {
+    fetchMockMolitRows
+} from "./mockRepository";
 
-    REQ_SIZE_CD: string | null;
-    REQ_SIZE_NM: string | null;
+import {
+    fetchStatisticsCommonCodes,
+    groupStatisticsCommonCodes
+} from "./commonCodes";
 
-    SAFE_CHK_YN: string | null;
-    CHK_YN: string | null;
-
-    CHK_COM_CD: string | number | null;
-    CHK_COM_NM?: string | null;
-};
-
-const DISTRICT_NAMES: Record<string, string> = {
-    "11110": "종로구",
-    "11140": "중구",
-    "11170": "용산구",
-    "11200": "성동구",
-    "11215": "광진구",
-    "11230": "동대문구",
-    "11260": "중랑구",
-    "11290": "성북구",
-    "11305": "강북구",
-    "11320": "도봉구",
-    "11350": "노원구",
-    "11380": "은평구",
-    "11410": "서대문구",
-    "11440": "마포구",
-    "11470": "양천구",
-    "11500": "강서구",
-    "11530": "구로구",
-    "11545": "금천구",
-    "11560": "영등포구",
-    "11590": "동작구",
-    "11620": "관악구",
-    "11650": "서초구",
-    "11680": "강남구",
-    "11710": "송파구",
-    "11740": "강동구",
-};
-
-function splitValues(
-    value: string | null | undefined,
-): string[] {
-    return String(value ?? "")
+/**
+ * 쉼표로 구분된 REQ_SIZE_CD 문자열을 배열로 변환한다.
+ *
+ * 예:
+ * "10,20" → ["10", "20"]
+ */
+function splitValues(value: MolitMapInfoRow["REQ_SIZE_CD"]): string[] {
+    return (value ?? "")
         .split(",")
         .map((item) => item.trim())
         .filter(Boolean);
 }
 
-function normalizeDiagnosisYn(
-    value: string | null,
-): DiagnosisYn {
-    const normalizedValue = String(value ?? "")
-        .trim()
-        .toUpperCase();
+/**
+ * SAFE_CHK_YN 또는 CHK_YN 값을
+ * 화면에서 사용할 진단 상태로 변환한다.
+ */
+function normalizeDiagnosisStatus(value: MolitMapInfoRow["SAFE_CHK_YN"]): DiagnosisStatus {
+    const normalizedValue = value?.trim().toUpperCase() ?? "";
 
-    if (
-        normalizedValue === "Y" ||
-        normalizedValue === "N"
-    ) {
+    if (normalizedValue === "Y" || normalizedValue === "N") {
         return normalizedValue;
     }
 
-    return "";
+    return "UNKNOWN";
 }
 
-function normalizeAgencyTypeCode(value: string | number | null | undefined,): string {
-    const normalizedValue = String(value ?? "").trim();
-
-    if (!normalizedValue) {
-        return "";
-    }
-
-    return /^\d+$/.test(normalizedValue)
-        ? normalizedValue.padStart(2, "0")
-        : normalizedValue;
+/**
+ * MOLIT_MAP_INFO.NEW_ROAD_CD에서
+ * 자치구 검색에 사용할 코드값을 구한다.
+ *
+ * 앞 5자리를 사용한다.
+ */
+function getDistrictCode(newRoadCode: MolitMapInfoRow["NEW_ROAD_CD"]): string {
+    return newRoadCode
+        ?.trim()
+        .slice(0, 5) ?? "";
 }
 
-function getDistrictFromAddress(address: string): string {
-    const match = address.match(
-        /(?:서울특별시|서울시)\s+([가-힣]+구)(?:\s|$)/,
-    );
-
-    return match?.[1] ?? "";
-}
-
-function getDistrictName(
-    newRoadCode: string | number | null | undefined,
-): string {
-    const districtCode = String(newRoadCode ?? "")
-        .trim()
-        .slice(0, 5);
-
-    return DISTRICT_NAMES[districtCode] ?? "";
-}
-
-function mapMolitRow(
-    row: MolitMapInfoRow,
-): InspectionAgency {
-    const address = String(row.ADDRESS ?? "").trim();
-
+/**
+ * MOLIT_MAP_INFO 원본 데이터를
+ * 화면 및 목록 API용 데이터로 변환한다.
+ */
+function mapMolitRow(row: MolitMapInfoRow,): InspectionAgency {
     return {
         agencyId: row.BUILD_ID,
-        agencyNumber: String(row.BUILD_ID),
 
-        agencyName:
-            String(row.CHK_COMPANY_NM ?? "").trim() || "-",
+        agencyName: row.CHK_COMPANY_NM?.trim() || "-",
 
-        agencyTypeCode:
-            normalizeAgencyTypeCode(row.CHK_COM_CD),
+        agencyTypeCode: row.CHK_COM_CD?.trim() ?? "",
 
-        agencyTypeName:
-            String(row.CHK_COM_NM ?? "").trim(),
+        buildingName: row.BUILD_NM?.trim() || "-",
 
-        buildingName:
-            String(row.BUILD_NM ?? "").trim() || "-",
+        address: row.ADDRESS?.trim() || "-",
 
-        address: address || "-",
+        districtCode: getDistrictCode(row.NEW_ROAD_CD),
 
-        district:
-            getDistrictFromAddress(address) ||
-            getDistrictName(row.NEW_ROAD_CD),
+        requestSizeCodes: splitValues(row.REQ_SIZE_CD),
 
-        requestSizeCodes:
-            splitValues(row.REQ_SIZE_CD),
+        safeDiagnosisYn: normalizeDiagnosisStatus(row.SAFE_CHK_YN),
 
-        requestSizeNames:
-            splitValues(row.REQ_SIZE_NM),
-
-        safeDiagnosisYn:
-            normalizeDiagnosisYn(row.SAFE_CHK_YN),
-
-        checkDiagnosisYn:
-            normalizeDiagnosisYn(row.CHK_YN),
+        checkDiagnosisYn: normalizeDiagnosisStatus(row.CHK_YN),
     };
 }
 
-export async function fetchMockInspectionAgencies(
-    signal?: AbortSignal,
-): Promise<InspectionAgency[]> {
-    const response = await fetch(
-        "/mock-api/MOLIT_MAP_INFO",
-        {signal},
+/**
+ * db.json의 MOLIT_MAP_INFO 전체 데이터를 조회하고
+ * InspectionAgency 배열로 변환한다.
+ */
+export async function fetchMockInspectionAgencies(_signal?: AbortSignal): Promise<InspectionAgency[]> {
+    const rows = await fetchMockMolitRows();
+
+    return rows.map(mapMolitRow);
+}
+
+/**
+ * 검색조건을 적용한다.
+ *
+ * 실제 백엔드에서는 이 로직에 해당하는 작업을
+ * SQL WHERE 조건으로 처리한다.
+ */
+function filterInspectionAgencies(agencies: InspectionAgency[], conditions: SearchConditions): InspectionAgency[] {
+    const agencyName = conditions.agencyName
+        .trim()
+        .toLowerCase();
+
+    return agencies.filter((agency) => {
+        const matchesAgencyName =
+            agencyName === "" ||
+            agency.agencyName
+                .toLowerCase()
+                .includes(agencyName);
+
+        const matchesDistrict =
+            conditions.districtCode === "" ||
+            agency.districtCode === conditions.districtCode;
+
+        const matchesRequestSize =
+            conditions.requestSizeCode === "" ||
+            agency.requestSizeCodes.includes(
+                conditions.requestSizeCode,
+            );
+
+        const matchesSafeDiagnosis =
+            conditions.safeDiagnosisYn === "" ||
+            agency.safeDiagnosisYn ===
+            conditions.safeDiagnosisYn;
+
+        const matchesCheckDiagnosis =
+            conditions.checkDiagnosisYn === "" ||
+            agency.checkDiagnosisYn ===
+            conditions.checkDiagnosisYn;
+
+        const matchesAgencyType =
+            conditions.agencyTypeCode === "" ||
+            agency.agencyTypeCode ===
+            conditions.agencyTypeCode;
+
+        return (
+            matchesAgencyName &&
+            matchesDistrict &&
+            matchesRequestSize &&
+            matchesSafeDiagnosis &&
+            matchesCheckDiagnosis &&
+            matchesAgencyType
+        );
+    });
+}
+
+/**
+ * 공통코드 목록에서 코드에 해당하는 화면 표시명을 찾는다.
+ */
+function getCommonCodeName(code: string, commonCodes: CommonCode[], fallback: string): string {
+    const commonCode = commonCodes.find(
+        (item) => item.code === code,
     );
 
-    if (!response.ok) {
-        throw new Error(
-            `Mock 데이터 조회 실패: ${response.status}`,
+    return (
+        commonCode?.shortName ??
+        commonCode?.codeName ??
+        fallback
+    );
+}
+
+/**
+ * /statis/left 또는 /statis/right Mock 응답
+ *
+ * field가 safeDiagnosisYn이면 왼쪽 차트,
+ * checkDiagnosisYn이면 오른쪽 차트 데이터를 만든다.
+ */
+export async function fetchMockDiagnosisStatistics(conditions: SearchConditions, field: DiagnosisField): Promise<DiagnosisStatistic[]> {
+    const [
+        agencies,
+        commonCodeList,
+    ] = await Promise.all([
+        fetchMockInspectionAgencies(),
+        fetchStatisticsCommonCodes(),
+    ]);
+
+    const filteredAgencies = filterInspectionAgencies(
+        agencies,
+        conditions,
+    );
+
+    const commonCodes =
+        groupStatisticsCommonCodes(commonCodeList);
+
+    const yesCount = filteredAgencies.filter(
+        (agency) => agency[field] === "Y",
+    ).length;
+
+    const noCount = filteredAgencies.filter(
+        (agency) => agency[field] === "N",
+    ).length;
+
+    const totalCount = filteredAgencies.length;
+
+    return [
+        {
+            code: "Y",
+            count: yesCount,
+            shortName: getCommonCodeName(
+                "Y",
+                commonCodes.YN_CD,
+                "예",
+            ),
+        },
+        {
+            code: "N",
+            count: noCount,
+            shortName: getCommonCodeName(
+                "N",
+                commonCodes.YN_CD,
+                "아니오",
+            ),
+        },
+        {
+            code: "A",
+            count: totalCount,
+            shortName: "합계",
+        },
+    ];
+}
+
+/**
+ * /api/statistics/agency-types Mock 응답
+ *
+ * CHK_COM_CD별 등록 건수를 계산한다.
+ */
+export async function fetchMockAgencyTypeStatistics(
+    conditions: SearchConditions,
+): Promise<AgencyTypeStatistic[]> {
+    const [
+        agencies,
+        commonCodeList,
+    ] = await Promise.all([
+        fetchMockInspectionAgencies(),
+        fetchStatisticsCommonCodes(),
+    ]);
+
+    const filteredAgencies = filterInspectionAgencies(
+        agencies,
+        conditions,
+    );
+
+    const commonCodes =
+        groupStatisticsCommonCodes(commonCodeList);
+
+    const counts = new Map<string, number>();
+
+    filteredAgencies.forEach((agency) => {
+        const code = agency.agencyTypeCode;
+
+        if (!code) {
+            return;
+        }
+
+        counts.set(
+            code,
+            (counts.get(code) ?? 0) + 1,
         );
-    }
+    });
 
-    const data: unknown = await response.json();
+    return commonCodes.CHK_COM_CD.map((commonCode) => ({
+        code: commonCode.code,
+        count: counts.get(commonCode.code) ?? 0,
+        shortName:
+            commonCode.shortName ??
+            commonCode.codeName ??
+            commonCode.code,
+    }));
+}
 
-    if (!Array.isArray(data)) {
-        throw new Error(
-            "MOLIT_MAP_INFO 응답이 배열 형식이 아닙니다.",
+/**
+ * /api/statistics/inspection-agencies Mock 응답
+ *
+ * 검색조건 적용 후 현재 페이지의 목록과
+ * 페이지네이션 정보를 반환한다.
+ */
+export async function fetchMockInspectionAgencyPage(
+    conditions: SearchConditions,
+    page: number,
+    size: number,
+): Promise<InspectionAgencyPage> {
+    const agencies =
+        await fetchMockInspectionAgencies();
+
+    const filteredAgencies =
+        filterInspectionAgencies(
+            agencies,
+            conditions,
         );
-    }
 
-    return (data as MolitMapInfoRow[]).map(mapMolitRow);
+    const normalizedPage =
+        Number.isFinite(page) && page >= 1
+            ? Math.floor(page)
+            : 1;
+
+    const normalizedSize =
+        Number.isFinite(size) && size >= 1
+            ? Math.floor(size)
+            : 5;
+
+    const totalElements = filteredAgencies.length;
+
+    const totalPages = Math.ceil(
+        totalElements / normalizedSize,
+    );
+
+    const startIndex =
+        (normalizedPage - 1) * normalizedSize;
+
+    const items = filteredAgencies.slice(
+        startIndex,
+        startIndex + normalizedSize,
+    );
+
+    return {
+        items,
+        pagination: {
+            page: normalizedPage,
+            size: normalizedSize,
+            totalElements,
+            totalPages,
+        },
+    };
 }
