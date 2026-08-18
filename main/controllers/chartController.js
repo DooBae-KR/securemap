@@ -1,0 +1,41 @@
+const chartService = require("../services/chartService");
+
+async function getLeftChartData(req, res) {
+    try {
+        const lChartData = await chartService.lChartCount();
+        res.status(200).json(lChartData);
+            } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: "차트 데이터를 불러오지 못했습니다."
+        });
+    }
+}
+async function getRightChartData(req, res) {
+    try {
+        const rChartData = await chartService.rChartCount();
+        res.status(200).json(rChartData);
+            } catch (err) { 
+        console.error(err);
+        res.status(500).json({
+            message: "차트 데이터를 불러오지 못했습니다."
+        });
+    }
+}
+async function getBarChartData(req, res) {
+    try {
+        const barChartData = await chartService.agencyCompanyCount();
+        res.status(200).json(barChartData);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({
+            message: "점검기관별 등록 현황을 불러오지 못했습니다."
+        });
+    }
+}
+
+module.exports = {
+    getLeftChartData,
+    getRightChartData,
+    getBarChartData
+};

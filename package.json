@@ -6,7 +6,7 @@
   "scripts": {
     "backend": "node main/config/server.js",
     "frontend": "cd front && npm run dev",
-    "dev": "concurrently \"npm run backend\" \"npm run frontend\" \"json-server db.json --port 3002\"",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"  \"npm run mock\"",
     "mock": "json-server db.json --port 3002",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
